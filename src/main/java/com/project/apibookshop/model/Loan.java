@@ -1,6 +1,7 @@
 package com.project.apibookshop.model;
 
 import com.project.apibookshop.enums.LoanStatus;
+import com.project.apibookshop.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -38,5 +39,5 @@ public class Loan {
     @ManyToOne
     @JoinColumn(name = "admin_id", nullable = false)
     private User admin;
-    
+
 }

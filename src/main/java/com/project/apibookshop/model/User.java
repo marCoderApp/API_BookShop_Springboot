@@ -1,5 +1,6 @@
 package com.project.apibookshop.model;
 
+import com.project.apibookshop.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +20,10 @@ public class User {
         private Long id;
         private String username;
         private String password;
-        private String role;
+
+        @Enumerated(EnumType.STRING)
+        private UserRole role;
+
         private String email;
 
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
