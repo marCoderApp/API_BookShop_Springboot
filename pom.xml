@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.project</groupId>
-	<artifactId>apibookshop</artifactId>
+	<artifactId>apirestlibrary</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>apibookshop</name>
-	<description>Api Rest Ful for a BookShop with Springboot </description>
+	<name>apirestlibrary</name>
+	<description>Api Rest Ful for a Library with Springboot </description>
 	<url/>
 	<licenses>
 		<license/>
