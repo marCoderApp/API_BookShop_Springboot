@@ -24,7 +24,4 @@ public class Book_Loan {
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "loan_id")
     private Loan loan;
-
-
-
 }

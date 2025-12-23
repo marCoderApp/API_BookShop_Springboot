@@ -4,6 +4,7 @@ import com.project.apibookshop.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class User {
 
         private Long id;
         private String username;
+        private String name;
+        private String surname;
         private String password;
 
         @Enumerated(EnumType.STRING)
@@ -28,4 +31,7 @@ public class User {
 
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
         private List<Loan> loans = new ArrayList<>();
+
+        private LocalDateTime registrationDate;
+        private LocalDateTime updateDate;
 }
