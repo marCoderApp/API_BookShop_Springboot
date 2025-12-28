@@ -11,6 +11,7 @@ import java.util.List;
 public class UserDetailsImpl implements UserDetails {
     private Long id;
     private String username;
+    private String email;
 
     @JsonIgnore
     private String password;
@@ -18,11 +19,16 @@ public class UserDetailsImpl implements UserDetails {
     // ENUMS
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailsImpl(Long id,
+                           String username,
+                           String password,
+                           Collection<? extends GrantedAuthority> authorities,
+                           String email) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.authorities = authorities;
+        this.email = email;
     }
 
     public static UserDetailsImpl build(com.project.apibookshop.model.User user) {
@@ -32,7 +38,8 @@ public class UserDetailsImpl implements UserDetails {
         return new UserDetailsImpl(user.getId(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities);
+                authorities,
+                user.getEmail());
     }
 
     @Override
@@ -69,4 +76,7 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled(){return true;}
 
+    public String getEmail() {
+        return this.email;
+    }
 }
