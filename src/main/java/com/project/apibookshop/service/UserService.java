@@ -22,4 +22,13 @@ public class UserService implements IUserService {
             userRepository.save(user);
     }
 
+    @Override
+    public void promoteUserToLibrarian(String email){
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found!"));
+
+        user.setRole(UserRole.LIBRARIAN);
+        userRepository.save(user);
+    }
+
 }

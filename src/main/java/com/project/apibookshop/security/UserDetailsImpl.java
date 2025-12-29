@@ -33,7 +33,7 @@ public class UserDetailsImpl implements UserDetails {
 
     public static UserDetailsImpl build(com.project.apibookshop.model.User user) {
         List<GrantedAuthority> authorities =
-                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRole()));
+                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
 
         return new UserDetailsImpl(user.getId(),
                 user.getEmail(),
@@ -78,5 +78,9 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 }

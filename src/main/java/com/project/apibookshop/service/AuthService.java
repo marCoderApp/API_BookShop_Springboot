@@ -70,6 +70,7 @@ public class AuthService implements IAuthService {
 
         return AuthResponseDTO.builder()
                 .token(jwt)
+                .id(userDetails.getId())
                 .email(userDetails.getEmail())
                 .role(role).build();
     }

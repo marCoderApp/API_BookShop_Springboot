@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -21,4 +21,9 @@ public class UserController {
         return ResponseEntity.ok("User with ID: "+ id + " is now a Administrator");
     }
 
+    @PatchMapping("/promote/librarian/{email}")
+    public ResponseEntity<String> promoteUserToLibrarian(@PathVariable String email) {
+        userService.promoteUserToLibrarian(email);
+        return ResponseEntity.ok("User with email: "+ email + " is now a Librarian");
+    }
 }

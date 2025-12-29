@@ -3,7 +3,8 @@ package com.project.apibookshop.enums;
 public enum UserRole {
 
     ADMIN("Admin"),
-    READER("Reader");
+    READER("Reader"),
+    LIBRARIAN("Librarian");
 
     private String role;
 
