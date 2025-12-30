@@ -21,7 +21,7 @@ public class BookDTO {
     private String description;
     private String isbn;
     private String publisher;
-    private String year;
+    private String release_year;
     private String language;
     private String pages;
     private String edition;
@@ -29,4 +29,5 @@ public class BookDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private BookStatus status;
+    private Integer copies;
 }

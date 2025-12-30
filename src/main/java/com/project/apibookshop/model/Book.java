@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "books")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-
     private Long id;
     private String title;
 
@@ -31,13 +31,14 @@ public class Book {
     private String description;
     private String isbn;
     private String publisher;
-    private String year;
+    private String release_year;
     private String language;
     private String pages;
     private String edition;
     private LocalDateTime release_date;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private Integer copies;
 
     @Enumerated(jakarta.persistence.EnumType.STRING)
     private BookStatus status;

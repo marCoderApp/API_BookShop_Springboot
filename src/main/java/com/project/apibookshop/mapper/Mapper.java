@@ -1,7 +1,9 @@
 package com.project.apibookshop.mapper;
 
 import com.project.apibookshop.dto.BookDTO;
+import com.project.apibookshop.dto.GenreDTO;
 import com.project.apibookshop.model.Book;
+import com.project.apibookshop.model.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Mapper {
@@ -10,8 +12,6 @@ public class Mapper {
         if(book == null){
             return null;
         }
-
-
 
         return BookDTO.builder()
                 .id(book.getId())
@@ -23,13 +23,25 @@ public class Mapper {
                 .description(book.getDescription())
                 .isbn(book.getIsbn())
                 .publisher(book.getPublisher())
-                .year(book.getYear())
+                .release_year(book.getRelease_year())
                 .language(book.getLanguage())
                 .pages(book.getPages())
                 .edition(book.getEdition())
                 .release_date(book.getRelease_date())
                 .createdAt(book.getCreatedAt())
                 .updatedAt(book.getUpdatedAt())
+                .copies(book.getCopies())
+                .build();
+    }
+
+    public static GenreDTO toDTO(Genre genre){
+        if(genre == null){
+            return null;
+        }
+
+        return GenreDTO.builder()
+                .id(genre.getId())
+                .name(genre.getName())
                 .build();
     }
 

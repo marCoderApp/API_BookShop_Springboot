@@ -1,6 +1,7 @@
 package com.project.apibookshop.service;
 
 import com.project.apibookshop.dto.BookDTO;
+import com.project.apibookshop.exception.NotFoundException;
 import com.project.apibookshop.mapper.Mapper;
 import com.project.apibookshop.model.Book;
 import com.project.apibookshop.model.Genre;
@@ -30,7 +31,7 @@ public class BookService implements IBookService{
 
 
         Genre genre = genreRepository.findByName(bookDTO.getGenre())
-                .orElseThrow(() -> new RuntimeException("Género no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Genre not found!"));
 
         Book book = Book.builder()
                 .title(bookDTO.getTitle())
@@ -41,13 +42,14 @@ public class BookService implements IBookService{
                 .description(bookDTO.getDescription())
                 .isbn(bookDTO.getIsbn())
                 .publisher(bookDTO.getPublisher())
-                .year(bookDTO.getYear())
+                .release_year(bookDTO.getRelease_year())
                 .language(bookDTO.getLanguage())
                 .pages(bookDTO.getPages())
                 .edition(bookDTO.getEdition())
                 .release_date(bookDTO.getRelease_date())
                 .createdAt(bookDTO.getCreatedAt())
                 .updatedAt(bookDTO.getUpdatedAt())
+                .copies(bookDTO.getCopies())
                 .build();
 
         return Mapper.toDTO(bookRepository.save(book));
@@ -56,19 +58,44 @@ public class BookService implements IBookService{
 
     @Override
     public BookDTO getBookById(Long id){
-        return Mapper.toDTO(bookRepository.findById(id).orElseThrow());
+
+        return Mapper.toDTO(bookRepository.findById(id).orElseThrow(()->
+                new NotFoundException("Book doesn't exist!")));
     }
 
 
     @Override
     public void deleteBookById(Long id){
+
+        if(!bookRepository.existsById(id)){
+            throw new NotFoundException("Book doesn't exist!");
+        }
         bookRepository.deleteById(id);
     }
 
     @Override
     public BookDTO updateBook(Long id, BookDTO bookDTO){
-        return null;
+
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Book doesn't exist!"));
+
+        book.setTitle(bookDTO.getTitle());
+        book.setGenre(genreRepository.findByName(bookDTO.getGenre()).orElseThrow(() -> new RuntimeException("Genre not found!")));
+        book.setRent_price(bookDTO.getRent_price());
+        book.setPurchase_price(bookDTO.getPurchase_price());
+        book.setCover(bookDTO.getCover());
+        book.setDescription(bookDTO.getDescription());
+        book.setIsbn(bookDTO.getIsbn());
+        book.setPublisher(bookDTO.getPublisher());
+        book.setRelease_year(bookDTO.getRelease_year());
+        book.setLanguage(bookDTO.getLanguage());
+        book.setPages(bookDTO.getPages());
+        book.setEdition(bookDTO.getEdition());
+        book.setRelease_date(bookDTO.getRelease_date());
+        book.setCreatedAt(bookDTO.getCreatedAt());
+        book.setUpdatedAt(bookDTO.getUpdatedAt());
+        book.setCopies(bookDTO.getCopies());
+
+        return Mapper.toDTO(bookRepository.save(book));
     }
-
-
 }
