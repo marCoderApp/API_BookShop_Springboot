@@ -98,4 +98,15 @@ public class BookService implements IBookService{
 
         return Mapper.toDTO(bookRepository.save(book));
     }
+
+    @Override
+    public BookDTO getBookByTitle(String title){
+        return Mapper.toDTO(bookRepository.findByTitle(title)
+                .orElseThrow(() -> new NotFoundException("Book not found!")));
+    }
+
+    @Override
+    public List<BookDTO> getBookByAuthorFullName(String authorName, String authorSurName){
+        return bookRepository.findByAuthorFullName(authorName, authorSurName).stream().map(Mapper::toDTO).toList();
+    }
 }

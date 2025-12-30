@@ -1,6 +1,7 @@
 package com.project.apibookshop.controller;
 
 import com.project.apibookshop.dto.BookDTO;
+import com.project.apibookshop.exception.NotFoundException;
 import com.project.apibookshop.service.BookService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,4 +49,21 @@ public class BookController {
         return ResponseEntity.ok("Book with ID: "+ id +" has been deleted!");
     }
 
+    @GetMapping("/title/{title}")
+    public ResponseEntity<BookDTO> getBookByTitle(@PathVariable String title){
+        return ResponseEntity.ok(bookService.getBookByTitle(title));
+    }
+
+    @GetMapping("/fullname/{name}-{surname}")
+    public ResponseEntity<List<BookDTO>> getBookByAuthorFullName(@PathVariable String name, @PathVariable String surname){
+
+        List<BookDTO> books = bookService.getBookByAuthorFullName(name, surname);
+
+        if(books.isEmpty()){
+            throw new NotFoundException("Author not found!");
+        }
+        return ResponseEntity.ok(books);
+    }
+
 }
+

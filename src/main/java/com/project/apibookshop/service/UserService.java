@@ -1,6 +1,8 @@
 package com.project.apibookshop.service;
 
+import com.project.apibookshop.dto.UserDTO;
 import com.project.apibookshop.enums.UserRole;
+import com.project.apibookshop.mapper.Mapper;
 import com.project.apibookshop.model.User;
 import com.project.apibookshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,19 @@ public class UserService implements IUserService {
 
         user.setRole(UserRole.LIBRARIAN);
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDTO updateUser(UserDTO userDTO, String email){
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found!"));
+
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+        userRepository.save(user);
+
+        return Mapper.toDTO(userRepository.save(user));
+
     }
 
 }

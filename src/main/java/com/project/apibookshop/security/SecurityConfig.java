@@ -58,6 +58,7 @@ public class SecurityConfig {
                         .requestMatchers("/users/**").hasRole("ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/**").hasAnyRole("ADMIN", "LIBRARIAN")
+                        .requestMatchers("/users/profile/update/**").hasAnyRole("ADMIN", "LIBRARIAN", "READER")
                         .anyRequest().authenticated()
                 );
 

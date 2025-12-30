@@ -11,6 +11,8 @@ public interface IBookService {
     BookDTO saveBook(BookDTO bookDTO);
     void deleteBookById(Long id);
     BookDTO updateBook(Long id, BookDTO bookDTO);
+    BookDTO getBookByTitle(String title);
+    List<BookDTO> getBookByAuthorFullName(String authorName, String authorSurname);
 
 
 

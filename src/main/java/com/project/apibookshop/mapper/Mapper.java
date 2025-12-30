@@ -2,9 +2,10 @@ package com.project.apibookshop.mapper;
 
 import com.project.apibookshop.dto.BookDTO;
 import com.project.apibookshop.dto.GenreDTO;
+import com.project.apibookshop.dto.UserDTO;
 import com.project.apibookshop.model.Book;
 import com.project.apibookshop.model.Genre;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.project.apibookshop.model.User;
 
 public class Mapper {
 
@@ -43,6 +44,20 @@ public class Mapper {
                 .id(genre.getId())
                 .name(genre.getName())
                 .build();
+    }
+
+    public static UserDTO toDTO(User user){
+        if (user == null) {
+            return null;
+        }
+
+        return UserDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .role(user.getRole().getRole())
+                .build();
+
     }
 
 }
