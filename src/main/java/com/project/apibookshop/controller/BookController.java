@@ -33,6 +33,14 @@ public class BookController {
 
     }
 
+    @PostMapping("/batch")
+    public ResponseEntity<List<BookDTO>> saveBooks(@RequestBody List<BookDTO> booksDTO){
+        List<BookDTO> createdBooks = booksDTO.stream()
+                .map(bookService::saveBook)
+                .toList();
+        return ResponseEntity.ok(createdBooks);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<BookDTO> getBookById(@PathVariable Long id){
         return ResponseEntity.ok(bookService.getBookById(id));

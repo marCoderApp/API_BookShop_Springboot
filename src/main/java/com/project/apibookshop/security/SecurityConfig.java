@@ -56,12 +56,16 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        //BOOKS
+                        .requestMatchers(HttpMethod.GET,"/api/books/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/books/**").hasAnyRole("ADMIN", "LIBRARIAN")
+                        .requestMatchers(HttpMethod.PUT,"/api/books/**").hasAnyRole("ADMIN", "LIBRARIAN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/books/**").hasAnyRole("ADMIN", "LIBRARIAN")
+                        .requestMatchers(HttpMethod.GET,"/api/genre/**").permitAll()
+                        //USERS
                         .requestMatchers("/users/**").hasRole("ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/users/profile/update/**").hasAnyRole("ADMIN", "LIBRARIAN", "READER")
-                        //BOOKS
-                        .requestMatchers(HttpMethod.GET,"/api/books/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/genre/**").permitAll()
                         .anyRequest().authenticated()
                 );
 
