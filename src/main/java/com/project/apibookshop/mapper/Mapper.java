@@ -1,8 +1,10 @@
 package com.project.apibookshop.mapper;
 
+import com.project.apibookshop.dto.AuthorDTO;
 import com.project.apibookshop.dto.BookDTO;
 import com.project.apibookshop.dto.GenreDTO;
 import com.project.apibookshop.dto.UserDTO;
+import com.project.apibookshop.model.Author;
 import com.project.apibookshop.model.Book;
 import com.project.apibookshop.model.Genre;
 import com.project.apibookshop.model.User;
@@ -58,6 +60,18 @@ public class Mapper {
                 .role(user.getRole().getRole())
                 .build();
 
+    }
+
+    public static AuthorDTO toDTOAuthor(Author author){
+        if(author == null){
+            return null;
+        }
+
+        return AuthorDTO.builder()
+                .id(author.getId())
+                .name(author.getName())
+                .surname(author.getSurname())
+                .build();
     }
 
 }

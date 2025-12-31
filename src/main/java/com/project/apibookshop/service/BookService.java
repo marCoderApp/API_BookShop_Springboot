@@ -107,6 +107,11 @@ public class BookService implements IBookService{
 
     @Override
     public List<BookDTO> getBookByAuthorFullName(String authorName, String authorSurName){
-        return bookRepository.findByAuthorFullName(authorName, authorSurName).stream().map(Mapper::toDTO).toList();
+        return bookRepository.findByAuthorNameAndSurname(authorName, authorSurName).stream().map(Mapper::toDTO).toList();
+    }
+
+    @Override
+    public List<BookDTO> getBookByGenre(String genre){
+        return bookRepository.findByGenre(genre).stream().map(Mapper::toDTO).toList();
     }
 }

@@ -54,7 +54,7 @@ public class BookController {
         return ResponseEntity.ok(bookService.getBookByTitle(title));
     }
 
-    @GetMapping("/fullname/{name}-{surname}")
+    @GetMapping("/fullname/{name}/{surname}")
     public ResponseEntity<List<BookDTO>> getBookByAuthorFullName(@PathVariable String name, @PathVariable String surname){
 
         List<BookDTO> books = bookService.getBookByAuthorFullName(name, surname);
@@ -62,6 +62,18 @@ public class BookController {
         if(books.isEmpty()){
             throw new NotFoundException("Author not found!");
         }
+        return ResponseEntity.ok(books);
+    }
+
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<BookDTO>> getBookByGenre(@PathVariable String genre){
+
+        List<BookDTO> books = bookService.getBookByGenre(genre);
+
+        if(books.isEmpty()){
+            throw new NotFoundException("Genre not found!");
+        }
+
         return ResponseEntity.ok(books);
     }
 

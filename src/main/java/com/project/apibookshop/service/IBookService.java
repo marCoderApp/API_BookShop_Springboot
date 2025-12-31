@@ -13,7 +13,7 @@ public interface IBookService {
     BookDTO updateBook(Long id, BookDTO bookDTO);
     BookDTO getBookByTitle(String title);
     List<BookDTO> getBookByAuthorFullName(String authorName, String authorSurname);
-
+    List<BookDTO> getBookByGenre(String genre);
 
 
 }
