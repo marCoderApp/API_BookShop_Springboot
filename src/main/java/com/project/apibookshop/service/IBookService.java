@@ -16,4 +16,5 @@ public interface IBookService {
     List<BookDTO> getBookByAuthorFullName(String authorName, String authorSurname);
     List<BookDTO> getBookByGenre_Name(String genreName);
     void changeBookStatusById(Long id, BookStatus status);
+    BookDTO changeBookCopies(Long id, Integer copies);
 }

@@ -11,6 +11,7 @@ import com.project.apibookshop.model.User;
 
 public class Mapper {
 
+    //BOOK TO DTO
     public static BookDTO toDTO(Book book){
         if(book == null){
             return null;
@@ -46,6 +47,7 @@ public class Mapper {
         return dto;
     }
 
+    //GENRE TO DTO
     public static GenreDTO toDTO(Genre genre){
         if(genre == null){
             return null;
@@ -57,6 +59,7 @@ public class Mapper {
                 .build();
     }
 
+    //USER TO DTO
     public static UserDTO toDTO(User user){
         if (user == null) {
             return null;
@@ -71,6 +74,7 @@ public class Mapper {
 
     }
 
+    //AUTHOR TO DTO
     public static AuthorDTO toDTOAuthor(Author author){
         if(author == null){
             return null;

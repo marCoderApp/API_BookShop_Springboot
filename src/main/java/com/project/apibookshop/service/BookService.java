@@ -162,6 +162,18 @@ public class BookService implements IBookService{
                 .orElseThrow(() -> new NotFoundException("Book doesn't exist!"));
 
         book.setStatus(status);
+        book.setUpdatedAt(LocalDateTime.now());
         bookRepository.save(book);
+    }
+
+    //CHANGE BOOK COPIES AMOUNT
+    @Override
+    public BookDTO changeBookCopies(Long id, Integer copies){
+        Book book = bookRepository.findById(id).orElseThrow(
+                () -> new NotFoundException("Book doesn't exist"));
+
+        book.setCopies(copies);
+        book.setUpdatedAt(LocalDateTime.now());
+        return Mapper.toDTO(bookRepository.save(book));
     }
 }

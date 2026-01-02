@@ -16,6 +16,7 @@ public class GenreService implements IGenreService{
     @Autowired
     private GenreRepository genreRepository;
 
+    //GET ALL GENRES
     @Override
     public List<GenreDTO> getAllGenres(){
         return genreRepository
@@ -23,12 +24,14 @@ public class GenreService implements IGenreService{
                 .toList();
     }
 
+    //GET GENRE BY NAME
     @Override
     public GenreDTO getGenreByName(String name){
         return Mapper.toDTO(genreRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Genre not found!")));
     }
 
+    //SAVE GENRE
     @Override
     public GenreDTO saveGenre(GenreDTO genreDTO){
         Genre genre = Genre.builder().name(genreDTO.getName()).build();

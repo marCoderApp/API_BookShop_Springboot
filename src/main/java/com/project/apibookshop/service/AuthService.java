@@ -33,6 +33,7 @@ public class AuthService implements IAuthService {
     @Autowired
     private JwtUtils jwtUtils;
 
+    //REGISTER USER
     @Override
     public String register(RegisterUserDTO registerUserDTO){
 
@@ -51,6 +52,7 @@ public class AuthService implements IAuthService {
         return "Usuario registrado exitosamente";
     }
 
+    //LOGIN USER
     @Override
     public AuthResponseDTO login(AuthRequestDTO authRequestDTO){
         Authentication authentication = authenticationManager.authenticate(

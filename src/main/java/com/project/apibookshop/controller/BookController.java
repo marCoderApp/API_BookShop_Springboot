@@ -109,5 +109,11 @@ public class BookController {
         return ResponseEntity.ok(books);
     }
 
+    //CHANGE BOOK COPIES AMOUNT
+    @PatchMapping("/copies/{copies}/{id}")
+    public ResponseEntity<BookDTO> changeBookCopies(@PathVariable Integer copies, @PathVariable Long id){
+        return ResponseEntity.ok(bookService.changeBookCopies(id, copies));
+    }
+
 }
 

@@ -16,11 +16,13 @@ public class GenreController {
     @Autowired
     private GenreService genreService;
 
+    //GET ALL GENRES
     @GetMapping
     public ResponseEntity<List<GenreDTO>> getAllGenres(){
         return ResponseEntity.ok(genreService.getAllGenres());
     }
 
+    //SAVE GENRE
     @PostMapping
     public ResponseEntity<GenreDTO> saveGenre(@RequestBody GenreDTO genreDTO){
         GenreDTO created = genreService.saveGenre(genreDTO);
@@ -30,9 +32,9 @@ public class GenreController {
                 .body(created);
     }
 
+    //GET GENRE BY NAME
     @GetMapping("/{name}")
     public ResponseEntity<GenreDTO> getGenreByName(@PathVariable String name){
         return ResponseEntity.ok(genreService.getGenreByName(name));
     }
-
 }
