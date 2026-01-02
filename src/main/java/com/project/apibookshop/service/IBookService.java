@@ -1,6 +1,7 @@
 package com.project.apibookshop.service;
 
 import com.project.apibookshop.dto.BookDTO;
+import com.project.apibookshop.enums.BookStatus;
 
 import java.util.List;
 
@@ -13,7 +14,6 @@ public interface IBookService {
     BookDTO updateBook(Long id, BookDTO bookDTO);
     BookDTO getBookByTitle(String title);
     List<BookDTO> getBookByAuthorFullName(String authorName, String authorSurname);
-    List<BookDTO> getBookByGenre(String genre);
-
-
+    List<BookDTO> getBookByGenre_Name(String genreName);
+    void changeBookStatusById(Long id, BookStatus status);
 }

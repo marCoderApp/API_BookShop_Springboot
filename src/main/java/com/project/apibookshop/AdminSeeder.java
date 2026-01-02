@@ -29,7 +29,7 @@ public class AdminSeeder implements CommandLineRunner {
                     .username("admin")
                     .email(adminEmail)
                     .password(passwordEncoder.encode("admin1234"))
-                    .role(UserRole.ADMIN)
+                    .role(UserRole.SUPER_ADMIN)
                     .registrationDate(LocalDateTime.now())
                     .build();
 

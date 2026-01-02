@@ -16,7 +16,7 @@ public class Mapper {
             return null;
         }
 
-        return BookDTO.builder()
+        BookDTO dto = BookDTO.builder()
                 .id(book.getId())
                 .title(book.getTitle())
                 .genre(book.getGenre().getName())
@@ -33,8 +33,17 @@ public class Mapper {
                 .release_date(book.getRelease_date())
                 .createdAt(book.getCreatedAt())
                 .updatedAt(book.getUpdatedAt())
+                .status(book.getStatus())
                 .copies(book.getCopies())
                 .build();
+
+        if(book.getBookAuthors() != null && !book.getBookAuthors().isEmpty()){
+            Author author = book.getBookAuthors().get(0).getAuthor();
+            dto.setAuthorName(author.getName());
+            dto.setAuthorSurname(author.getSurname());
+        }
+
+        return dto;
     }
 
     public static GenreDTO toDTO(Genre genre){

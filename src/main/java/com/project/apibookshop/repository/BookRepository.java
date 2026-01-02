@@ -15,5 +15,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT ba.book FROM Book_Author ba WHERE ba.author.name = :name AND ba.author.surname = :surname")
     List<Book> findByAuthorNameAndSurname(@Param("name") String name, @Param("surname") String surname);
     List<Book> findByGenre(String genre);
-
+    List<Book> findByGenre_Name(String name);
 }

@@ -4,7 +4,8 @@ public enum UserRole {
 
     ADMIN("Admin"),
     READER("Reader"),
-    LIBRARIAN("Librarian");
+    LIBRARIAN("Librarian"),
+    SUPER_ADMIN("SuperAdmin");
 
     private String role;
 

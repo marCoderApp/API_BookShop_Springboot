@@ -15,6 +15,8 @@ public class BookDTO {
     private Long id;
     private String title;
     private String genre;
+    private String authorName;
+    private String authorSurname;
     private Double rent_price;
     private Double purchase_price;
     private String cover;
