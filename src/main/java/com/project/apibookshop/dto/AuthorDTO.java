@@ -23,7 +23,5 @@ public class AuthorDTO {
     private String gender;
     private String country;
     private LocalDateTime createdAt;
-
-
-
+    private LocalDateTime updatedAt;
 }

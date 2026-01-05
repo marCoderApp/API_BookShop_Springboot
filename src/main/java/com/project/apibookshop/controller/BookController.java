@@ -23,6 +23,7 @@ public class BookController {
     //GET ALL BOOKS
     @GetMapping
     public ResponseEntity<List<BookDTO>> getAllBooks(){
+
         return ResponseEntity.ok(bookService.getAllBooks());
     }
 

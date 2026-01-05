@@ -44,7 +44,6 @@ public class UserService implements IUserService {
 
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
-        userRepository.save(user);
 
         return Mapper.toDTO(userRepository.save(user));
     }

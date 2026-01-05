@@ -84,6 +84,16 @@ public class Mapper {
                 .id(author.getId())
                 .name(author.getName())
                 .surname(author.getSurname())
+                .biography(author.getBiography())
+                .image(author.getImage())
+                .nationality(author.getNationality())
+                .birthdate(author.getBirthdate())
+                .country(author.getCountry())
+                .deathdate(author.getDeathdate())
+                .gender(author.getGender())
+                .country(author.getCountry())
+                .createdAt(author.getCreatedAt())
+                .updatedAt(author.getUpdatedAt())
                 .build();
     }
 
