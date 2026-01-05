@@ -9,4 +9,6 @@ public interface IGenreService {
     List<GenreDTO> getAllGenres();
     GenreDTO getGenreByName(String name);
     GenreDTO saveGenre(GenreDTO genreDTO);
+    GenreDTO updateGenre(Long id, GenreDTO genreDTO);
+    void deleteGenreById(Long id);
 }

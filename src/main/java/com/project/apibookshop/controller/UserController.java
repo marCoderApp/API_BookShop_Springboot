@@ -32,4 +32,33 @@ public class UserController {
     public ResponseEntity<UserDTO> updateUser(@PathVariable String email, @RequestBody UserDTO userDTO){
         return ResponseEntity.ok(userService.updateUser(userDTO, email));
     }
+
+    //SAVE USER
+    @PostMapping
+    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO){
+        return ResponseEntity.ok(userService.saveUser(userDTO));
+    }
+
+    //GET USER BY EMAIL
+    @GetMapping("/{email}")
+    public ResponseEntity<UserDTO> getUserByEmail(@PathVariable String email){
+        return ResponseEntity.ok(userService.getUserByEmail(email));
+    }
+
+    //GET USER BY ID
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id){
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    //DELETE USER BY ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id){
+        userService.deleteUserById(id);
+        return ResponseEntity.ok("User with ID: "+ id +" has been deleted!");
+    }
+
+
+
+
 }

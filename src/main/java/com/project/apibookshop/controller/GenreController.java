@@ -37,4 +37,18 @@ public class GenreController {
     public ResponseEntity<GenreDTO> getGenreByName(@PathVariable String name){
         return ResponseEntity.ok(genreService.getGenreByName(name));
     }
+
+    //UPDATE GENRE BY ID
+    @PatchMapping("/{id}")
+    public ResponseEntity<GenreDTO> updateGenre(@PathVariable Long id, @RequestBody GenreDTO genreDTO){
+        return ResponseEntity.ok(genreService.updateGenre(id, genreDTO));
+    }
+
+    //DELETE GENRE BY ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteGenreById(@PathVariable Long id){
+        genreService.deleteGenreById(id);
+
+        return ResponseEntity.ok("Genre with ID: "+ id +" has been deleted!");
+    }
 }

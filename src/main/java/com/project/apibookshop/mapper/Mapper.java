@@ -1,13 +1,7 @@
 package com.project.apibookshop.mapper;
 
-import com.project.apibookshop.dto.AuthorDTO;
-import com.project.apibookshop.dto.BookDTO;
-import com.project.apibookshop.dto.GenreDTO;
-import com.project.apibookshop.dto.UserDTO;
-import com.project.apibookshop.model.Author;
-import com.project.apibookshop.model.Book;
-import com.project.apibookshop.model.Genre;
-import com.project.apibookshop.model.User;
+import com.project.apibookshop.dto.*;
+import com.project.apibookshop.model.*;
 
 public class Mapper {
 
@@ -95,6 +89,11 @@ public class Mapper {
                 .createdAt(author.getCreatedAt())
                 .updatedAt(author.getUpdatedAt())
                 .build();
+    }
+
+    //LOAN TO DTO
+    public static LoanDTO toDTOLoan(Loan loan){
+        return null;
     }
 
 }

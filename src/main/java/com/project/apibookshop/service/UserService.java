@@ -96,6 +96,4 @@ public class UserService implements IUserService {
 
        return Mapper.toDTO(userRepository.save(newUser));
     }
-
-
 }

@@ -62,13 +62,14 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT,"/api/books/**").hasAnyRole("SUPER_ADMIN","ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.PATCH,"/api/books/**").hasAnyRole("SUPER_ADMIN","ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.DELETE,"/api/books/**").hasAnyRole("SUPER_ADMIN","ADMIN", "LIBRARIAN")
+                        //AUTHORS
                         .requestMatchers(HttpMethod.GET,"/api/authors").permitAll()
                         .requestMatchers(HttpMethod.PATCH,"/api/authors/**").hasAnyRole("SUPER_ADMIN","ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.POST,"/api/authors/**").hasAnyRole("SUPER_ADMIN","ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.DELETE,"/api/authors/**").hasAnyRole("SUPER_ADMIN","ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.PUT,"/api/authors/**").hasAnyRole("SUPER_ADMIN","ADMIN", "LIBRARIAN")
                         .requestMatchers(HttpMethod.GET,"/api/genre/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/genre/**").permitAll()
+                        //LOAN
                         //USERS
                         .requestMatchers(HttpMethod.PATCH,"/users/**").hasRole("SUPER_ADMIN")
                         .requestMatchers(HttpMethod.GET,"/users/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "LIBRARIAN")

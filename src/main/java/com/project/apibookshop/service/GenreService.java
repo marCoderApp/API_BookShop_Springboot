@@ -1,6 +1,7 @@
 package com.project.apibookshop.service;
 
 import com.project.apibookshop.dto.GenreDTO;
+import com.project.apibookshop.exception.NotFoundException;
 import com.project.apibookshop.mapper.Mapper;
 import com.project.apibookshop.model.Book;
 import com.project.apibookshop.model.Genre;
@@ -38,4 +39,25 @@ public class GenreService implements IGenreService{
 
         return Mapper.toDTO(genreRepository.save(genre));
     }
+
+    //UPDATE GENRE
+    @Override
+    public GenreDTO updateGenre(Long id, GenreDTO genreDTO){
+        Genre genre = genreRepository.findById(id).orElseThrow(
+                () -> new NotFoundException("Genre not found!")
+        );
+
+        genre.setName(genreDTO.getName());
+        return Mapper.toDTO(genreRepository.save(genre));
+    }
+
+    @Override
+    public void deleteGenreById(Long id){
+       if(!genreRepository.existsById(id)){
+           throw new NotFoundException("Genre not found!");
+       }
+
+       genreRepository.deleteById(id);
+    }
+
 }

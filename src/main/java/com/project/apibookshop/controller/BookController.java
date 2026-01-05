@@ -19,11 +19,9 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-
     //GET ALL BOOKS
     @GetMapping
     public ResponseEntity<List<BookDTO>> getAllBooks(){
-
         return ResponseEntity.ok(bookService.getAllBooks());
     }
 
