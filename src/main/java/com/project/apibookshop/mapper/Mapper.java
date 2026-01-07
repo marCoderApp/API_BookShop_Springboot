@@ -93,7 +93,48 @@ public class Mapper {
 
     //LOAN TO DTO
     public static LoanDTO toDTOLoan(Loan loan){
-        return null;
+
+        if(loan != null){
+            return null;
+        }
+
+        return LoanDTO.builder()
+                .id(loan.getId())
+                .user_id(loan.getUser().getId())
+                .rent_price(loan.getRent_price())
+                .purchase_price(loan.getPurchase_price())
+                .total_price(loan.getTotal_price())
+                .amount_books(loan.getAmount_books())
+                .start_date(loan.getStartDate() != null ?
+                         loan.getStartDate() : null)
+                .end_date(loan.getEndDate())
+                .status(loan.getStatus() != null ?
+                        loan.getStatus().name() : null)
+                .amount_books(loan.getAmount_books())
+                .books_loansDTO(loan.getBook_loans().stream()
+                        .map(Mapper::toBookLoanDTO).toList())
+                .build();
+
+    }
+
+    //BOOK LOAN DTO
+
+    public static Book_LoanDTO toBookLoanDTO(Book_Loan bookLoan){
+       if (bookLoan == null) {
+           return null;
+       }
+
+       return Book_LoanDTO.builder()
+               .id(bookLoan.getId())
+               .book_id(bookLoan.getBook().getId())
+               .book_title(bookLoan.getBook().getTitle())
+               .user_id(bookLoan.getLoan().getId())
+               .rent_price(bookLoan.getRent_price())
+               .purchase_price(bookLoan.getPurchase_price())
+               .start_date(bookLoan.getLoan().getStartDate().toString())
+               .end_date(bookLoan.getLoan().getEndDate().toString())
+               .status(bookLoan.getLoan().getStatus())
+               .build();
     }
 
 }

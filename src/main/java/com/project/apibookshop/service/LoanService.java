@@ -1,13 +1,19 @@
 package com.project.apibookshop.service;
 
 import com.project.apibookshop.dto.LoanDTO;
+import com.project.apibookshop.enums.LoanStatus;
+import com.project.apibookshop.exception.NotFoundException;
 import com.project.apibookshop.mapper.Mapper;
 import com.project.apibookshop.model.Loan;
+import com.project.apibookshop.model.User;
 import com.project.apibookshop.repository.BookLoanRepository;
 import com.project.apibookshop.repository.LoanRepository;
+import com.project.apibookshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +28,9 @@ public class LoanService implements ILoanService {
 
     @Autowired
     private BookLoanRepository bookLoanRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     //GET ALL LOANS
     @Override
@@ -67,45 +76,74 @@ public class LoanService implements ILoanService {
     @Override
     public List<LoanDTO> getLoansByBookTitle(String title){
 
-        List<Loan> loans = loanRepository.findByBook_TitleContainingIgnoreCase(title);
+        List<Loan> loans = loanRepository.findByBook_loans_Book_TitleContainingIgnoreCase(title);
 
         return loans.stream().map(Mapper::toDTOLoan).toList();
     }
-    
 
     //GET LOANS BY BOOK AUTHOR
     @Override
     public List<LoanDTO> getLoansByBookAuthor(String author){
-        return null;
+
+        List<Loan> loans = loanRepository.findByBook_loans_Book_Authors_Author_SurnameContainingIgnoreCase(author);
+        return loans.stream().map(Mapper::toDTOLoan).toList();
     }
 
     //GET LOANS BY BOOK GENRE
     @Override
     public List<LoanDTO> getLoansByBookGenre(String genre){
-        return null;
+
+        List<Loan> loans = loanRepository.findByBook_Book_Genre_Name(genre);
+        return loans.stream().map(Mapper::toDTOLoan).toList();
     }
 
     //GET LOANS BY STATUS
     @Override
     public List<LoanDTO> getLoansByStatus(String status){
-        return null;
+
+        List<Loan> loans = loanRepository.findByStatus(status);
+
+        return loans.stream().map(Mapper::toDTOLoan).toList();
     }
 
     //GET LOANS BY START DATE
     @Override
     public List<LoanDTO> getLoansByStartDate(String startDate){
-        return null;
+
+        List<Loan> loans = loanRepository.findByStartDate(startDate);
+
+        return loans.stream().map(Mapper::toDTOLoan).toList();
     }
 
     //GET LOANS BY USER EMAIL
     @Override
     public List<LoanDTO> getLoansByUserEmail(String email){
-        return null;
+
+        List<Loan> loans = loanRepository.findByUser_Email(email);
+
+        return loans.stream().map(Mapper::toDTOLoan).toList();
     }
 
     //SAVE LOAN
     @Override
+    @Transactional
     public LoanDTO saveLoan(LoanDTO loanDTO){
+
+        User user = userRepository.findById(loanDTO.getUser_id()).orElseThrow(
+                () -> new NotFoundException("User not found!")
+        );
+
+        Loan loan = Loan.builder()
+                .user(user)
+                .startDate(LocalDateTime.now())
+                .status(LoanStatus.LOANED)
+                .total_price(0.0)
+                .amount_books(0)
+                .build();
+
+        Loan loanSaved = loanRepository.save(loan);
+
+
         return null;
     }
 

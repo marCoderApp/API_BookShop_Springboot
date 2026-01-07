@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface LoanRepository extends JpaRepository<Loan, Long> {
     List<Loan> findByUser_Id(Long userId);
-    List<Loan> findByUser_Email(Long userId);
+    List<Loan> findByUser_Email(String email);
     List<Loan> findByBook_loans_Book_Id(Long bookId);
-    List<Loan> findByBook_TitleContainingIgnoreCase(String title);
+    List<Loan> findByBook_loans_Book_TitleContainingIgnoreCase(String title);
     List<Loan> findByStatus(String status);
-    List<Loan> findByBook_Genre_NameContainingIgnoreCase(String genre);
+    List<Loan> findByBook_Book_Genre_Name(String genre);
     List<Loan> findByStartDate(String startDate);
-    List<Loan> findByAuthor_NameContainingIgnoreCase(String author);
+    List<Loan> findByBook_loans_Book_Authors_Author_SurnameContainingIgnoreCase(String author);
 }
