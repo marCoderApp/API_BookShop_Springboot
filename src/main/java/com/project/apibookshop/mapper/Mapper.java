@@ -94,13 +94,15 @@ public class Mapper {
     //LOAN TO DTO
     public static LoanDTO toDTOLoan(Loan loan){
 
-        if(loan != null){
+        if(loan == null){
             return null;
         }
 
         return LoanDTO.builder()
                 .id(loan.getId())
                 .user_id(loan.getUser().getId())
+                .book_id(loan.getBook_loans().getFirst().getBook().getId())
+                .admin_id(loan.getAdmin().getId())
                 .rent_price(loan.getRent_price())
                 .purchase_price(loan.getPurchase_price())
                 .total_price(loan.getTotal_price())

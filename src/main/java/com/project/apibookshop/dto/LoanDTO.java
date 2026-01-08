@@ -16,6 +16,8 @@ public class LoanDTO {
 
     private Long id;
     private Long user_id;
+    private Long book_id;
+    private Long admin_id;
     private Double rent_price;
     private Double purchase_price;
     private LocalDateTime start_date;
