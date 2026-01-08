@@ -72,7 +72,7 @@ public class LoanService implements ILoanService {
     @Override
     public List<LoanDTO> getLoansByBookId(Long id){
 
-        List<Loan> loans = loanRepository.findByBook_loans_Book_Id(id);
+        List<Loan> loans = loanRepository.findByBookId(id);
         return loans.stream().map(Mapper::toDTOLoan).toList();
     }
 
@@ -80,7 +80,7 @@ public class LoanService implements ILoanService {
     @Override
     public List<LoanDTO> getLoansByBookTitle(String title){
 
-        List<Loan> loans = loanRepository.findByBook_loans_Book_TitleContainingIgnoreCase(title);
+        List<Loan> loans = loanRepository.findByBookTitle(title);
 
         return loans.stream().map(Mapper::toDTOLoan).toList();
     }
@@ -89,7 +89,7 @@ public class LoanService implements ILoanService {
     @Override
     public List<LoanDTO> getLoansByBookAuthor(String author){
 
-        List<Loan> loans = loanRepository.findByBook_loans_Book_Authors_Author_SurnameContainingIgnoreCase(author);
+        List<Loan> loans = loanRepository.findByAuthorSurname(author);
         return loans.stream().map(Mapper::toDTOLoan).toList();
     }
 
@@ -97,7 +97,7 @@ public class LoanService implements ILoanService {
     @Override
     public List<LoanDTO> getLoansByBookGenre(String genre){
 
-        List<Loan> loans = loanRepository.findByBook_Book_Genre_Name(genre);
+        List<Loan> loans = loanRepository.findByGenreName(genre);
         return loans.stream().map(Mapper::toDTOLoan).toList();
     }
 

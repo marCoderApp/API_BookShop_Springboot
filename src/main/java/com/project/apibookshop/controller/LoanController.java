@@ -88,5 +88,5 @@ public class LoanController {
         loanService.deleteLoanById(id);
         return ResponseEntity.ok("Loan with ID: "+ id +" has been deleted!");
     }
-    
+
 }

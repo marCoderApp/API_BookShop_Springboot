@@ -45,7 +45,7 @@ public class Book {
     @Enumerated(jakarta.persistence.EnumType.STRING)
     private BookStatus status;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book_Author> bookAuthors;
 
 }
