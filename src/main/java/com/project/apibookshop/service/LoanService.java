@@ -29,9 +29,6 @@ public class LoanService implements ILoanService {
     private LoanRepository loanRepository;
 
     @Autowired
-    private LoanService loanService;
-
-    @Autowired
     private BookLoanRepository bookLoanRepository;
 
     @Autowired
