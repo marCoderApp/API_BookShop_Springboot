@@ -29,7 +29,7 @@ public class Loan {
     private Double rent_price;
     private Double purchase_price;
     private Double total_price;
-    private int amount_books;
+    private Integer amount_books;
 
     @OneToMany(mappedBy = "loan", cascade = CascadeType.ALL,
     orphanRemoval = true, fetch = FetchType.LAZY)

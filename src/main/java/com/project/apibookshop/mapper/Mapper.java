@@ -133,8 +133,10 @@ public class Mapper {
                .user_id(bookLoan.getLoan().getId())
                .rent_price(bookLoan.getRent_price())
                .purchase_price(bookLoan.getPurchase_price())
-               .start_date(bookLoan.getLoan().getStartDate().toString())
-               .end_date(bookLoan.getLoan().getEndDate().toString())
+               .start_date(bookLoan.getLoan().getStartDate() != null ?
+                       bookLoan.getLoan().getStartDate().toString() : null)
+               .end_date(bookLoan.getLoan().getEndDate() != null ?
+                       bookLoan.getLoan().getEndDate().toString() : null)
                .status(bookLoan.getLoan().getStatus())
                .build();
     }

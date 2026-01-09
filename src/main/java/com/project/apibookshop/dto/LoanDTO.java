@@ -23,7 +23,7 @@ public class LoanDTO {
     private LocalDateTime start_date;
     private LocalDateTime end_date;
     private String status;
-    private int amount_books;
+    private Integer amount_books;
     private List<Book_LoanDTO> books_loansDTO;
     private Double total_price;
 

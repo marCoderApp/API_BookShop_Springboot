@@ -152,8 +152,13 @@ public class LoanService implements ILoanService {
                 () -> new NotFoundException("User not found!")
         );
 
+        User admin = userRepository.findById(loanDTO.getAdmin_id()).orElseThrow(
+                ()-> new NotFoundException("Admin not found!")
+        );
+
         Loan loan = Loan.builder()
                 .user(user)
+                .admin(admin)
                 .startDate(LocalDateTime.now())
                 .status(LoanStatus.LOANED)
                 .total_price(0.0)

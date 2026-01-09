@@ -77,10 +77,10 @@ public class BookController {
         return ResponseEntity.ok("Book with ID: "+ id +" has been deleted!");
     }
 
-    //GET BOOK BY TITLE
+    //GET BOOK ALL BY TITLE
     @GetMapping("/title/{title}")
-    public ResponseEntity<BookDTO> getBookByTitle(@PathVariable String title){
-        return ResponseEntity.ok(bookService.getBookByTitle(title));
+    public ResponseEntity<List<BookDTO>> getBookByTitle(@PathVariable String title){
+        return ResponseEntity.ok(bookService.getBookAllByTitle(title));
     }
 
     //GET BOOK BY AUTHOR FULL NAME

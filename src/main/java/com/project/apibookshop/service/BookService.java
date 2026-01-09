@@ -12,7 +12,6 @@ import com.project.apibookshop.repository.AuthorRepository;
 import com.project.apibookshop.repository.BookAuthorRepository;
 import com.project.apibookshop.repository.BookRepository;
 import com.project.apibookshop.repository.GenreRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -133,9 +132,13 @@ public class BookService implements IBookService{
 
     //GET BOOK BY TITLE
     @Override
-    public BookDTO getBookByTitle(String title){
-        return Mapper.toDTO(bookRepository.findByTitle(title)
-                .orElseThrow(() -> new NotFoundException("Book not found!")));
+    public List<BookDTO> getBookAllByTitle(String title){
+       List<Book> books = bookRepository.findByTitle(title);
+
+       if(books.isEmpty()){
+           throw new NotFoundException("Book not found!");
+       }
+       return books.stream().map(Mapper::toDTO).toList();
     }
 
     //GET BOOK BY AUTHOR FULL NAME

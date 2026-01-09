@@ -12,7 +12,7 @@ public interface IBookService {
     BookDTO saveBook(BookDTO bookDTO);
     void deleteBookById(Long id);
     BookDTO updateBook(Long id, BookDTO bookDTO);
-    BookDTO getBookByTitle(String title);
+    List<BookDTO> getBookAllByTitle(String title);
     List<BookDTO> getBookByAuthorFullName(String authorName, String authorSurname);
     List<BookDTO> getBookByGenre_Name(String genreName);
     void changeBookStatusById(Long id, BookStatus status);
