@@ -1,5 +1,12 @@
+# Etapa 1: Build con Maven
+FROM maven:3.9.6-eclipse-temurin-21 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+# Etapa 2: Runtime con JDK
 FROM eclipse-temurin:21-jdk
-ARG JAR_FILE=target/apirestlibrary-0.0.1.jar
-COPY ${JAR_FILE} app_apiLibrary.jar
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app_apiLibrary.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
